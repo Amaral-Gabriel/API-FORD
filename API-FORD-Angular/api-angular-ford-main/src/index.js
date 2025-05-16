@@ -9,6 +9,7 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+const port = 3005;
 
 app.use(express.static('public'));
 
@@ -50,7 +51,7 @@ app.get("/vehicles", (req, res) => {
                 volumetotal: 3800,
                 connected: 1600,
                 softwareUpdates: 2100,
-                img: "http://localhost:3000/img/ranger.png"
+                img: `http://localhost:${port}/img/ranger.png`
             },
             {
                 id: 2,
@@ -58,7 +59,7 @@ app.get("/vehicles", (req, res) => {
                 volumetotal: 1500,
                 connected: 500,
                 softwareUpdates: 750,
-                img: "http://localhost:3000/img/mustang.png"
+                img: `http://localhost:${port}/img/mustang.png`
             },
             {
                 id: 3,
@@ -66,7 +67,7 @@ app.get("/vehicles", (req, res) => {
                 volumetotal: 2650,
                 connected: 900,
                 softwareUpdates: 1200,
-                img: "http://localhost:3000/img/territory.png"
+                img: `http://localhost:${port}/img/territory.png`
             },
             {
                 id: 4,
@@ -74,7 +75,7 @@ app.get("/vehicles", (req, res) => {
                 volumetotal: 2200,
                 connected: 800,
                 softwareUpdates: 1000,
-                img: "http://localhost:3000/img/broncoSport.png"
+                img: `http://localhost:${port}/img/broncoSport.png`
             }
         ];
 
@@ -166,6 +167,6 @@ app.post("/vehicleData", (req, res) => {
     }
 })
 
-app.listen(3000, () => {
-    console.log("http://localhost:3000/");
+app.listen(port, () => {
+    console.log(`http://localhost:${port}/`);
 });
