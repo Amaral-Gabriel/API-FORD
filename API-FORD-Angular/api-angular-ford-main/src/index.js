@@ -19,13 +19,13 @@ app.post("/login", (req, res) => {
 
         if (!nome || !senha) {
             return res.status(400).json({
-                message: "O campo de usuário ou senha não foi preenchido!"
+                message: "The username or password field was not filled in!"
             });
         }
 
         if (nome !== "admin" || senha !== "123") {
             return res.status(401).json({
-                message: "O nome de usuário ou senha está incorreto ou não foi cadastrado!"
+                message: "The username or password is incorrect or has not been registered!"
             });
         }
 
@@ -37,7 +37,7 @@ app.post("/login", (req, res) => {
 
     } catch (error) {
         return res.status(500).json({
-            message: "Falha na comunicação com o servidor!"
+            message: "Failed to communicate with the server!"
         });
     }
 });
