@@ -2,14 +2,14 @@ const express = require("express");
 const path = require("path");
 const cors = require("cors");
 
-
 const app = express();
 
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-const port = 3005;
+// Usar a porta fornecida pelo Render ou usar 3005 como fallback para desenvolvimento local
+const port = process.env.PORT || 3005;
 
 app.use(express.static('public'));
 
@@ -44,6 +44,9 @@ app.post("/login", (req, res) => {
 
 app.get("/vehicles", (req, res) => {
     try {
+        // Obter a URL base da requisição atual
+        const baseUrl = `${req.protocol}://${req.get('host')}`;
+        
         const vehicles = [
             {
                 id: 1,
@@ -51,7 +54,7 @@ app.get("/vehicles", (req, res) => {
                 volumetotal: 3800,
                 connected: 1600,
                 softwareUpdates: 2100,
-                img: `http://localhost:${port}/img/ranger.png`
+                img: `${baseUrl}/img/ranger.png`
             },
             {
                 id: 2,
@@ -59,7 +62,7 @@ app.get("/vehicles", (req, res) => {
                 volumetotal: 1500,
                 connected: 500,
                 softwareUpdates: 750,
-                img: `http://localhost:${port}/img/mustang.png`
+                img: `${baseUrl}/img/mustang.png`
             },
             {
                 id: 3,
@@ -67,7 +70,7 @@ app.get("/vehicles", (req, res) => {
                 volumetotal: 2650,
                 connected: 900,
                 softwareUpdates: 1200,
-                img: `http://localhost:${port}/img/territory.png`
+                img: `${baseUrl}/img/territory.png`
             },
             {
                 id: 4,
@@ -75,7 +78,7 @@ app.get("/vehicles", (req, res) => {
                 volumetotal: 2200,
                 connected: 800,
                 softwareUpdates: 1000,
-                img: `http://localhost:${port}/img/broncoSport.png`
+                img: `${baseUrl}/img/broncoSport.png`
             }
         ];
 
@@ -168,5 +171,5 @@ app.post("/vehicleData", (req, res) => {
 })
 
 app.listen(port, () => {
-    console.log(`http://localhost:${port}/`);
+    console.log(`Servidor rodando na porta ${port}`);
 });
